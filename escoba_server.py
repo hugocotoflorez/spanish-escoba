@@ -336,6 +336,16 @@ playersnumentry = tk.Entry(playersnumframe); playersnumentry.pack(fill=tk.BOTH)
 pointsframe = tk.LabelFrame(settings_frame,text='Puntos para ganar la partida:');pointsframe.grid(row=2,column=0,sticky='EW')
 pointsentry = tk.Entry(pointsframe); pointsentry.pack(fill=tk.BOTH)
 
+addr_frame = tk.LabelFrame(settings_frame,text='Public IP addr:'); addr_frame.grid(row=3,column=0,sticky='EW')
+
+ip_addr_1 = socket.gethostbyname(socket.gethostname())
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.connect(("8.8.8.8", 80))
+ip_addr_2 = s.getsockname()[0]
+s.close()
+tk.Label(addr_frame,text=ip_addr_1).pack()
+tk.Label(addr_frame,text=ip_addr_2).pack()
+
 log_widget = tk.Text(main_frame);log_widget.grid(row=0,column=1)
 
 
